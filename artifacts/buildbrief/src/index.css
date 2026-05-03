@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap');
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  background-color: #FAF5EE;
+  color: #0a0a0a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; border: none; font-family: inherit; }
+img { display: block; max-width: 100%; }
+input { font-family: inherit; }
+
+/* Grid background */
+.bb-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(0,0,0,0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.055) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Page shell */
+.bb-page {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #FAF5EE;
+}
+
+/* Header */
+.bb-header {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 32px 24px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.bb-logo-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bb-logo-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 7px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.bb-logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bb-logo-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #0a0a0a;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+.bb-logo-tagline {
+  font-size: 9px;
+  font-weight: 500;
+  color: #999;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+/* Main content */
+.bb-main {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px 32px;
+  max-width: 720px;
+  width: 100%;
+  flex: 1;
+}
+
+/* Badge */
+@keyframes badgePulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(232, 69, 32, 0.5), 0 0 12px rgba(232, 69, 32, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(232, 69, 32, 0), 0 0 20px rgba(232, 69, 32, 0.3);
+  }
+}
+
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.3); }
+}
+
+.bb-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #E84520;
+  background-color: rgba(232, 69, 32, 0.08);
+  border: 1px solid rgba(232, 69, 32, 0.25);
+  border-radius: 100px;
+  padding: 5px 14px;
+  margin-bottom: 28px;
+  animation: badgePulse 2.4s ease-in-out infinite;
+  letter-spacing: 0.01em;
+}
+
+.bb-badge-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #E84520;
+  flex-shrink: 0;
+  animation: dotPulse 2.4s ease-in-out infinite;
+}
+
+/* Heading */
+.bb-heading {
+  font-size: clamp(44px, 9vw, 72px);
+  font-weight: 800;
+  color: #0a0a0a;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin-bottom: 20px;
+}
+
+.bb-heading-accent {
+  display: block;
+  color: #E84520;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: clamp(46px, 9.5vw, 76px);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+/* Subheading */
+.bb-subheading {
+  font-size: 16px;
+  font-weight: 400;
+  color: #555;
+  line-height: 1.75;
+  max-width: 500px;
+  margin-bottom: 36px;
+}
+
+/* Form */
+.bb-form {
+  display: flex;
+  width: 100%;
+  max-width: 460px;
+  border-radius: 100px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1.5px rgba(0,0,0,0.13), 0 2px 10px rgba(0,0,0,0.07);
+  background-color: #fff;
+  margin-bottom: 14px;
+  padding: 4px 4px 4px 20px;
+  gap: 0;
+}
+
+.bb-input {
+  flex: 1;
+  padding: 12px 4px;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #111;
+  min-width: 0;
+}
+
+.bb-input::placeholder {
+  color: #bbb;
+}
+
+.bb-button {
+  padding: 12px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  background-color: #E84520;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: 0.01em;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.bb-button:hover {
+  background-color: #d03c1c;
+}
+
+.bb-button:active {
+  transform: scale(0.98);
+}
+
+/* Success */
+.bb-success {
+  font-size: 15px;
+  font-weight: 600;
+  color: #E84520;
+  padding: 15px 20px;
+  background-color: rgba(232, 69, 32, 0.07);
+  border: 1px solid rgba(232, 69, 32, 0.2);
+  margin-bottom: 14px;
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Disclaimer */
+.bb-disclaimer {
+  font-size: 12.5px;
+  color: #999;
+  letter-spacing: 0.01em;
+}
+
+/* Footer */
+.bb-footer {
+  position: relative;
+  z-index: 1;
+  padding: 20px 24px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.bb-footer-text {
+  font-size: 11px;
+  font-weight: 500;
+  color: #bbb;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 480px) {
+  .bb-header {
+    padding: 24px 20px 0;
+    justify-content: flex-start;
+  }
+
+  .bb-main {
+    padding: 48px 20px 24px;
+  }
+
+  .bb-badge {
+    font-size: 12px;
+    padding: 4px 12px;
+    margin-bottom: 22px;
+  }
+
+  .bb-subheading {
+    font-size: 15px;
+    margin-bottom: 28px;
+  }
+
+  .bb-form {
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 12px 12px 12px 16px;
+    gap: 10px;
+    box-shadow: 0 0 0 1.5px rgba(0,0,0,0.13), 0 2px 10px rgba(0,0,0,0.07);
+  }
+
+  .bb-input {
+    padding: 4px 4px;
+    font-size: 16px;
+    width: 100%;
+  }
+
+  .bb-button {
+    padding: 14px 22px;
+    font-size: 15px;
+    width: 100%;
+    text-align: center;
+    border-radius: 12px;
+  }
+
+  .bb-success {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  .bb-heading {
+    font-size: 38px;
+  }
+  .bb-heading-accent {
+    font-size: 40px;
+  }
+}
