@@ -21,12 +21,12 @@ function App() {
       <header className="bb-header">
         <div className="bb-logo-row">
           <img
-            src={`${BASE}logo-mark.png`}
-            alt="Build Brief mark"
+            src={`${BASE}launchplan-logo.png`}
+            alt="LaunchPlan mark"
             className="bb-logo-mark"
           />
           <div className="bb-logo-text">
-            <span className="bb-logo-name">build brief</span>
+            <span className="bb-logo-name">launchplan</span>
             <span className="bb-logo-tagline">plan · build · ship · scale</span>
           </div>
         </div>
@@ -75,7 +75,7 @@ function App() {
       </main>
 
       <footer className="bb-footer">
-        <span className="bb-footer-text">buildbrief.club</span>
+        <span className="bb-footer-text">launchplan.dev</span>
       </footer>
     </div>
   );
