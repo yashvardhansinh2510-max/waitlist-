@@ -1,0 +1,8 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="32" height="32" rx="7" fill="#FAF5EE"/>
+  <!-- Full N-mark shape: left square + S-curve band + right square, one unified path -->
+  <path
+    d="M 2.5,16 L 9,16 C 12.5,3.8 17.5,3.8 21,7 L 29,7 L 29,16 L 22.5,16 C 19,28.2 14,28.2 10.5,25 L 2.5,25 Z"
+    fill="#E84520"
+  />
+</svg>
