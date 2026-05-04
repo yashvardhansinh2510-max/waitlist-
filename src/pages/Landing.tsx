@@ -55,17 +55,20 @@ export default function Landing() {
 
     setLoading(true);
     try {
-      const { error } = await supabase
+      const { data, error } = await supabase
         .from("waitlist")
-        .insert([{ email: email.trim() }]);
+        .insert([{ email: email.trim() }])
+        .select();
 
       if (error) {
+        console.error("Supabase insert error:", error);
         if (error.code === "23505") {
           setAlreadyExists(true);
         } else {
           throw error;
         }
       } else {
+        console.log("Supabase insert success:", data);
         // Fresh signup — send confirmation email via Vercel API route
         try {
           const response = await fetch('/api/send-email', {
@@ -77,9 +80,12 @@ export default function Landing() {
           if (!response.ok) {
             const errorData = await response.json();
             console.error("Email API failed:", errorData);
+            const detail = errorData.details?.message || errorData.error || "Unknown error";
+            console.warn(`Email not sent: ${detail}`);
+          } else {
+            console.log("Confirmation email sent successfully!");
           }
         } catch (fnErr) {
-          // Non-fatal: signup succeeded even if email fails
           console.error("Network error sending email:", fnErr);
         }
       }

@@ -59,12 +59,16 @@ export default async function handler(req, res) {
 
     const data = await response.json();
     if (!response.ok) {
-      console.error('Resend error:', data);
-      return res.status(500).json({ error: 'Failed to send email', details: data });
+      console.error('Resend API error:', JSON.stringify(data, null, 2));
+      return res.status(response.status).json({ 
+        error: 'Resend API failed', 
+        status: response.status,
+        details: data 
+      });
     }
     return res.status(200).json({ success: true });
   } catch (err) {
-    console.error('Unexpected error:', err);
-    return res.status(500).json({ error: err.message });
+    console.error('Serverless function error:', err);
+    return res.status(500).json({ error: 'Internal Server Error', message: err.message });
   }
 }
