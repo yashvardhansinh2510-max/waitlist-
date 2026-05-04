@@ -68,14 +68,19 @@ export default function Landing() {
       } else {
         // Fresh signup — send confirmation email via Vercel API route
         try {
-          await fetch('/api/send-email', {
+          const response = await fetch('/api/send-email', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email: email.trim() }),
           });
+          
+          if (!response.ok) {
+            const errorData = await response.json();
+            console.error("Email API failed:", errorData);
+          }
         } catch (fnErr) {
           // Non-fatal: signup succeeded even if email fails
-          console.error("Failed to send confirmation email:", fnErr);
+          console.error("Network error sending email:", fnErr);
         }
       }
 
