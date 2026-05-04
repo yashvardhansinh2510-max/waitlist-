@@ -16,7 +16,7 @@ export default function Landing() {
       const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
       if (!AudioContext) return;
       const ctx = new AudioContext();
-      
+
       const osc1 = ctx.createOscillator();
       const gain1 = ctx.createGain();
       osc1.type = 'sine';
@@ -66,6 +66,18 @@ export default function Landing() {
         } else {
           throw error;
         }
+      } else {
+        // Fresh signup — send confirmation email via Vercel API route
+        try {
+          await fetch('/api/send-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email.trim() }),
+          });
+        } catch (fnErr) {
+          // Non-fatal: signup succeeded even if email fails
+          console.error("Failed to send confirmation email:", fnErr);
+        }
       }
 
       await new Promise(resolve => setTimeout(resolve, 600));
@@ -104,7 +116,7 @@ export default function Landing() {
           </motion.div>
 
           <Link href="/auth">
-            <motion.a 
+            <motion.a
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="bb-nav-link"
@@ -189,28 +201,28 @@ export default function Landing() {
                 <motion.div
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ 
-                    type: "spring", 
-                    stiffness: 400, 
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
                     damping: 30,
-                    delay: 0.1 
+                    delay: 0.1
                   }}
                   className="bb-success-icon"
                 >
                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <motion.path 
-                      d="M6 16L13 23L26 9" 
-                      stroke="#E84520" 
-                      strokeWidth="3.5" 
-                      strokeLinecap="round" 
+                    <motion.path
+                      d="M6 16L13 23L26 9"
+                      stroke="#E84520"
+                      strokeWidth="3.5"
+                      strokeLinecap="round"
                       strokeLinejoin="round"
-                      initial={{ pathLength: 0, opacity: 0 }} 
-                      animate={{ pathLength: 1, opacity: 1 }} 
-                      transition={{ 
-                        duration: 0.6, 
-                        delay: 0.2, 
-                        ease: [0.23, 1, 0.32, 1] 
-                      }} 
+                      initial={{ pathLength: 0, opacity: 0 }}
+                      animate={{ pathLength: 1, opacity: 1 }}
+                      transition={{
+                        duration: 0.6,
+                        delay: 0.2,
+                        ease: [0.23, 1, 0.32, 1]
+                      }}
                     />
                   </svg>
                 </motion.div>
@@ -218,8 +230,8 @@ export default function Landing() {
                   {alreadyExists ? "You're already in!" : "You're in the inner circle!"}
                 </h3>
                 <p className="bb-success-text">
-                  {alreadyExists 
-                    ? "We've already got your email on the list." 
+                  {alreadyExists
+                    ? "We've already got your email on the list."
                     : "Check your inbox for your confirmation email."}
                 </p>
               </motion.div>
