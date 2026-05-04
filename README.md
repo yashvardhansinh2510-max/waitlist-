@@ -1,11 +1,11 @@
-# Build Brief Waitlist
+# LaunchPlan Waitlist
 
-Waitlist landing page for [buildbrief.club](https://buildbrief.club).
+Waitlist landing page for LaunchPlan.
 
-Built with React + Vite + Inter font + plain CSS.
+Built with React + Vite + Inter font + Vanilla CSS + Supabase.
 
 ## Dev
 ```bash
-pnpm install
-pnpm run dev
+npm install
+npm run dev
 ```
