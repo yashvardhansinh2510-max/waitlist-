@@ -13,3 +13,9 @@ FOR UPDATE TO anon USING (false);
 
 CREATE POLICY "Deny delete for waitlist" ON "public"."waitlist"
 FOR DELETE TO anon USING (false);
+
+-- Allow authenticated users to see the count of signups
+CREATE POLICY "Enable read for authenticated users" ON "public"."waitlist"
+FOR SELECT 
+TO authenticated 
+USING (true);

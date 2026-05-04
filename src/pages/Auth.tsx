@@ -75,8 +75,8 @@ export default function Auth() {
         >
           <h2 className="bb-auth-title">{isLogin ? "Welcome Back" : "Join LaunchPlan"}</h2>
           <p className="bb-auth-subtitle">
-            {isLogin 
-              ? "Enter your details to access your portal." 
+            {isLogin
+              ? "Enter your details to access your portal."
               : "Create an account to start building."}
           </p>
 
@@ -129,7 +129,7 @@ export default function Auth() {
             <span>
               {isLogin ? "Don't have an account?" : "Already have an account?"}
             </span>
-            <button 
+            <button
               className="bb-auth-toggle"
               onClick={() => setIsLogin(!isLogin)}
             >

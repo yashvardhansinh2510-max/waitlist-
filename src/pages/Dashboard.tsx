@@ -57,7 +57,7 @@ export default function Dashboard() {
               <span className="bb-logo-name">launchplan</span>
             </div>
           </div>
-          
+
           <button onClick={handleLogout} className="bb-nav-link">
             Sign Out
           </button>
@@ -73,12 +73,12 @@ export default function Dashboard() {
           <div className="bb-badge">Dashboard</div>
           <h1 className="bb-heading">Welcome back,</h1>
           <p className="bb-dashboard-user">{user?.email}</p>
-          
+
           <div className="bb-dashboard-content">
             <p>You're successfully authenticated. This is your private portal for LaunchPlan.</p>
             <div className="bb-dashboard-placeholder">
-               {/* Future features like referral links, blueprints, etc. could go here */}
-               Coming Soon: Early Access Blueprints
+              {/* Future features like referral links, blueprints, etc. could go here */}
+              Coming Soon: Early Access Blueprints
             </div>
           </div>
         </motion.div>
