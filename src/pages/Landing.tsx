@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "wouter";
 import { supabase } from "../lib/supabase";
 
 const BASE = import.meta.env.BASE_URL;
@@ -66,18 +65,6 @@ export default function Landing() {
         } else {
           throw error;
         }
-      } else {
-        // Fresh signup — send confirmation email via Vercel API route
-        try {
-          await fetch('/api/send-email', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: email.trim() }),
-          });
-        } catch (fnErr) {
-          // Non-fatal: signup succeeded even if email fails
-          console.error("Failed to send confirmation email:", fnErr);
-        }
       }
 
       await new Promise(resolve => setTimeout(resolve, 600));
@@ -115,15 +102,6 @@ export default function Landing() {
             </div>
           </motion.div>
 
-          <Link href="/auth">
-            <motion.a
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="bb-nav-link"
-            >
-              Sign In
-            </motion.a>
-          </Link>
         </div>
       </header>
 
