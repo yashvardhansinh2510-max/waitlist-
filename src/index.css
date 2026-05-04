@@ -357,7 +357,24 @@ input {
 @media (max-width: 480px) {
   .bb-header {
     padding: 40px 20px 0;
-    justify-content: flex-start;
+    justify-content: center;
+  }
+
+  .bb-logo-mark {
+    width: 60px;
+    height: 60px;
+  }
+
+  .bb-logo-name {
+    font-size: 22px;
+  }
+
+  .bb-logo-tagline {
+    font-size: 9px;
+  }
+
+  .bb-logo-row {
+    gap: 10px;
   }
 
   .bb-main {
