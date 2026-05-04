@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   }
 
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
-  const FROM_ADDRESS = process.env.RESEND_FROM_ADDRESS || 'onboarding@resend.dev';
+  const FROM_ADDRESS = process.env.RESEND_FROM_ADDRESS || 'noreply@launchplan.dev';
 
   if (!RESEND_API_KEY) {
     console.error('RESEND_API_KEY is not set');
