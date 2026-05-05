@@ -71,6 +71,7 @@ export default function Landing() {
         console.log("Supabase insert success:", data);
         // Fresh signup — send confirmation email via Vercel API route
         try {
+          console.log("Signup success, triggering confirmation email...");
           const response = await fetch('/api/send-email', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -82,6 +83,7 @@ export default function Landing() {
             console.error("Email API failed:", errorData);
             const detail = errorData.details?.message || errorData.error || "Unknown error";
             console.warn(`Email not sent: ${detail}`);
+            // We don't alert the user here because the DB insert already worked
           } else {
             console.log("Confirmation email sent successfully!");
           }

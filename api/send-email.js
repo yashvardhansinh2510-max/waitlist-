@@ -10,12 +10,18 @@ export default async function handler(req, res) {
   }
 
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
-  const FROM_ADDRESS = process.env.RESEND_FROM_ADDRESS || 'yug@launchplan.dev';
+  // Use onboarding@resend.dev as fallback if domain is not verified
+  const FROM_ADDRESS = process.env.RESEND_FROM_ADDRESS || 'onboarding@resend.dev';
 
   if (!RESEND_API_KEY) {
-    console.error('RESEND_API_KEY is not set');
-    return res.status(500).json({ error: 'Email service not configured' });
+    console.error('ERROR: RESEND_API_KEY is not set in environment variables');
+    return res.status(500).json({ 
+      error: 'Email service not configured', 
+      details: 'RESEND_API_KEY is missing' 
+    });
   }
+
+  console.log(`Attempting to send email to ${email} from ${FROM_ADDRESS}...`);
 
   try {
     const response = await fetch('https://api.resend.com/emails', {
@@ -59,14 +65,16 @@ export default async function handler(req, res) {
 
     const data = await response.json();
     if (!response.ok) {
-      console.error('Resend API error:', JSON.stringify(data, null, 2));
+      console.error('Resend API Error:', JSON.stringify(data, null, 2));
       return res.status(response.status).json({ 
         error: 'Resend API failed', 
         status: response.status,
         details: data 
       });
     }
-    return res.status(200).json({ success: true });
+
+    console.log(`Email sent successfully to ${email}`);
+    return res.status(200).json({ success: true, id: data.id });
   } catch (err) {
     console.error('Serverless function error:', err);
     return res.status(500).json({ error: 'Internal Server Error', message: err.message });
