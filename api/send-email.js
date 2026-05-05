@@ -10,8 +10,8 @@ export default async function handler(req, res) {
   }
 
   const RESEND_API_KEY = process.env.RESEND_API_KEY;
-  // Use onboarding@resend.dev as fallback if domain is not verified
-  const FROM_ADDRESS = process.env.RESEND_FROM_ADDRESS || 'onboarding@resend.dev';
+  // Use verified domain email as fallback
+  const FROM_ADDRESS = process.env.RESEND_FROM_ADDRESS || 'yug@launchplan.dev';
 
   if (!RESEND_API_KEY) {
     console.error('ERROR: RESEND_API_KEY is not set in environment variables');
